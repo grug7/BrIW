@@ -144,7 +144,7 @@ def serve_drinks_page():
 
 @app.route("/rounds", methods=["GET", "POST"])
 def serve_rounds_page():
-    return render_template("rounds.html", title="Rounds", rounds=get_rounds())
+    return render_template("rounds.html", title="Rounds", rounds=get_rounds(), people=get_people())
 
 
 if __name__ == "__main__":

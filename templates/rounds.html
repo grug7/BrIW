@@ -16,7 +16,7 @@
                         {% for round in rounds %}
                             <tr>
                                 <th scope="col">
-                                    <input type="button" value="View" class="btn btn-warning"/>
+                                    <input id="view{{round.id}}" type="button" value="View" class="btn btn-warning" onclick="viewRoundOrders(event, {{round.id}})"/>
                                 </th>
                                 <td>#{{round.id}}</th>
                                 <td>{{round.initiator}}</td>
@@ -33,22 +33,22 @@
                         <table class="center-div">
                             <tr>
                                 <td>
-                                    <legend style="text-align: center;">Add New Drink</legend>
-                                </td>
-                            </tr>
-                            <tr>                  
-                                <td>
-                                    <input id="name" type="text" name="name" placeholder="Drink Name" style="width: 100%;"/>
+                                    <legend style="text-align: center;">Create New Round</legend>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input id="instructions" type="text" name="instructions" placeholder="Instructions" style="width: 100%;"/>
+                                    <select id="fav_drink" name="fav_drink">
+                                        <option value="-1">-- Round Initiator --</option>
+                                        {% for person in people %}
+                                            <option value="{{person.id}}">{{person.full_name}}</option>
+                                        {% endfor %}
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <input id="submit_btn" type="submit" value="Submit" class="btn btn-warning btn-sm" style="align-self: center; margin-top: 10px; width: 100%;">
+                                <input id="submit_btn" type="submit" value="Create Round" class="btn btn-warning btn-sm" style="align-self: center; margin-top: 10px; width: 100%;">
                                 </td>
                             </tr>
                         </table>
