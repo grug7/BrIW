@@ -1,5 +1,9 @@
 {% extends "master.html" %}
 
+{% block head %}
+    <link rel="stylesheet" href="/static/modal.css"/>
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
@@ -38,7 +42,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <select id="fav_drink" name="fav_drink">
+                                    <select id="fav_drink" name="fav_drink" style="width: 100%;">
                                         <option value="-1">-- Round Initiator --</option>
                                         {% for person in people %}
                                             <option value="{{person.id}}">{{person.full_name}}</option>
@@ -48,7 +52,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                <input id="submit_btn" type="submit" value="Create Round" class="btn btn-warning btn-sm" style="align-self: center; margin-top: 10px; width: 100%;">
+                                    <input id="submit_btn" type="submit" value="Create Round" class="btn btn-warning btn-sm" style="align-self: center; margin-top: 10px; width: 100%;">
                                 </td>
                             </tr>
                         </table>
@@ -57,6 +61,16 @@
             </div>
         </div>
     </div>
+
+    <div id="orders_modal" class="modal">
+        <div class="modal-content">
+            <table id="orders_table">
+
+            </table>
+            <input id="close_modal" type="button" class="close-modal btn btn-warning btn-sm" value="close" />
+        </div>
+    </div>
+
 
     <script src="/static/rounds.js"></script>
 {% endblock %}
