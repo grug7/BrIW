@@ -2,6 +2,7 @@ __pycache__/
 data/
 ansible/
 
+Dockerfile
 *.p
 *.py.swp
 *.json
