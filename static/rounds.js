@@ -55,7 +55,7 @@ function viewRoundOrders(event, round_id) {
     getRoundOrdersAPI(round_id);
 }
 
-function postDrinkJson(initiator) {
+function postRoundJson(initiator) {
   if (initiator !== "") {
       const xhr = new XMLHttpRequest();
       let json = JSON.stringify({
@@ -84,7 +84,7 @@ document.getElementById("submit_btn").addEventListener("click", function(event){
   event.preventDefault();
   let initiator = document.getElementById("initiator");
   
-  postDrinkJson(initiator.value);
+  postRoundJson(initiator.value);
 
   //reset form now drink added posted
   initiator.value = "";
