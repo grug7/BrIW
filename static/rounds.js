@@ -20,18 +20,14 @@ function generateTableBody(table, data) {
             let cellValue;
 
             switch (i) {
-              case 0:
-                console.log("zero");
-                console.log(order["id"])
+              case 0:                
                 cellValue = order["id"];
                 break;
-              case 1:
-                console.log("one");
+              case 1:              
                 person = order["person"];
                 cellValue = person["first_name"] + " " + person["last_name"];
                 break;                
               case 2:
-                console.log("two");
                 cellValue = order["drink"]["name"];          
                 break;
             }
@@ -45,7 +41,7 @@ function generateTableBody(table, data) {
 function viewRoundOrders(event, round_id) {
     event.preventDefault();
     modal = document.getElementById("orders_modal");
-    // modal_round_id_span = document.getElementById("modal_round_id_span");
+    document.getElementById("modal_round_id_span").textContent = round_id;
     close_btn = document.getElementById("close_modal").addEventListener("click", function() {
         modal.style.display = "none";
     });
@@ -60,8 +56,7 @@ function postRoundJson(initiator) {
       const xhr = new XMLHttpRequest();
       let json = JSON.stringify({
         initiator: initiator
-      });
-      console.log(`built json: ${json}`);
+      });      
       
       xhr.addEventListener("load", function() {
           if (xhr.status == 201) {

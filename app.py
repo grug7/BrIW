@@ -142,7 +142,7 @@ def serve_drinks_page():
 
 @app.route("/rounds", methods=["GET", "POST"])
 def serve_rounds_page():
-    return render_template("rounds.html", title="Rounds", rounds=get_rounds(), people=get_people())
+    return render_template("rounds.html", title="Rounds", rounds=get_rounds(), people=get_people(), drinks=get_drinks())
 
 
 if __name__ == "__main__":

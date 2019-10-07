@@ -24,7 +24,20 @@
                                 </th>
                                 <td>#{{round.id}}</th>
                                 <td>{{round.initiator.full_name}}</td>
-                                <td>{{round._active}}</td>
+                                
+                                {%if round._active %}
+                                <td>
+                                    <b>
+                                        <span style="color: green;">Yes</span>
+                                    </b>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <b>
+                                        <span style="color: red;">No</span>
+                                    </b>
+                                </td>
+                                {% endif %}
                                 <td>{{round.start_time_UTC}}</td>                            
                             </tr>
                         {% endfor %}
@@ -64,7 +77,7 @@
 
     <div id="orders_modal" class="modal">
         <div class="modal-content">
-            <h2>Orders for Round <span id="modal_round_id_span"></span></h2>
+            <h2>Orders for Round #<span id="modal_round_id_span"></span></h2>
             <table id="orders_table" class="table" style="display: flexbox;">
                 <thead>
                     <th scope="col">#</th>
@@ -72,7 +85,23 @@
                     <th scope="col">Drink</th>
                 </thead>
             </table>
-            <input id="close_modal" type="button" class="close-modal btn btn-warning btn-sm" value="close" />
+            <div>
+                <h3>New Order</h3>
+            </div>
+            <div>
+                <select id="modal_add_new_order_person">
+                    {% for person in people %}
+                        <option value="{{person.id}}">{{person.full_name}}</option>
+                    {% endfor %}
+                </select>
+                <select id="modal_add_new_order_drink">
+                    {% for drink in drinks %}
+                        <option value="{{drink.id}}">{{drink.name}}</option>
+                    {% endfor %}
+                </select>
+                <input id="add_order_btn" type="button" class="btn btn-warning btn-sm" value="Add" />
+                <input id="close_modal" type="button" class="close-modal btn btn-warning btn-sm" value="close" style="float: right;" />
+            </div>
         </div>
     </div>
 
