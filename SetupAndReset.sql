@@ -46,7 +46,7 @@ CREATE TABLE `tb_Rounds` (
   CONSTRAINT `tb_Rounds_ibfk_1` FOREIGN KEY (`Round_Initiator`) REFERENCES `tb_People` (`Person_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `tb_RoundOrders` (
+CREATE TABLE `tb_Round_Orders` (
   `ROrder_Id` int(11) NOT NULL AUTO_INCREMENT,
   `ROrder_Round_Id` int(11) NOT NULL,
   `ROrder_Person` int(11) NOT NULL,
@@ -91,7 +91,7 @@ Values (0, UTC_TIMESTAMP(), 1), #1
 (1, UTC_TIMESTAMP(), 4), #2
 (1, UTC_TIMESTAMP(), 6); #3
 
-Insert Into tb_RoundOrders (ROrder_Round_Id, ROrder_Person, ROrder_Drink)
+Insert Into tb_Round_Orders (ROrder_Round_Id, ROrder_Person, ROrder_Drink)
 Values (1, 6, 2), #1
 (1, 2, 7), #2
 (1, 4, 5), #3
