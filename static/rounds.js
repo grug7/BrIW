@@ -1,9 +1,8 @@
 function getRoundOrdersAPI(round_id) {
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load",function() {
-    let order_data = xhr.responseText;
+    let order_data = JSON.parse(xhr.responseText);
     let orders_table = document.getElementById("orders_table");
-    generateTableHead(orders_table, order_data);
     generateTableBody(orders_table, order_data);
   });
 
@@ -11,24 +10,13 @@ function getRoundOrdersAPI(round_id) {
   xhr.send(null);
 }
 
-function generateTableHead(table, data) {
-    let thead = table.createTHead();
-    let row = thead.insertRow();
-
-    for (let key of data) {
-      let th = document.createElement("th");
-      let text = document.createTextNode(key);
-
-      console.log(key);
-      th.appendChild(text);
-      row.appendChild(th);
-    }
-  }
-
 function generateTableBody(table, data) {
+    console.log(`data: ${data}`);
     for (let element of data) {
+        console.log(`element: ${element}`)
         let row = table.insertRow();
         for (let key in element) {
+            console.log(`key: ${key}`);
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
             cell.appendChild(text);
