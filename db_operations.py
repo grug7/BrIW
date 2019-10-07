@@ -2,6 +2,7 @@ import pymysql
 from data_config import *
 from classes import *
 from classes import Round
+from datetime import datetime
 
 def db_return_rows(query, parameters=None):
     con = get_sql_connection()
@@ -196,7 +197,7 @@ def get_rounds():
                 row["Round_Id"], 
                 row["Round_Active"], 
                 row["Round_StartTimeUTC"], 
-                row["Round_Initiator"]
+                get_person_by_id(row["Round_Initiator"])
             )
         )
 
@@ -264,13 +265,13 @@ def insert_drink(name, instructions):
     return db_insert_and_return_id(sql_insert_command, parameters)
 
 
-def insert_round(round_active, round_start_time_utc, round_initiator):
+def insert_round(round_initiator):
     sql_save_command  = """
     insert into tb_Rounds (Round_Active, Round_StartTimeUTC, Round_Initiator)
-    values (%s, %s, %s)
+    values (1, %s, %s)
     """
     
-    parameters = (round_active, round_start_time_utc, round_initiator)
+    parameters = (datetime.utcnow(), round_initiator)
     return db_insert_and_return_id(sql_save_command, parameters)
 
 

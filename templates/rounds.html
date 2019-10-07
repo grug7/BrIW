@@ -13,7 +13,7 @@
                         <th scope="col"></th>
                         <th scope="col">#</th>
                         <th scope="col">Initiator</th>
-                        <th scope="col">Round Active</th>
+                        <th scope="col">Round Open?</th>
                         <th scope="col">Start/Submit Time</th>
                     </thead>
                     <tbody>
@@ -23,7 +23,7 @@
                                     <input id="view{{round.id}}" type="button" value="View" class="btn btn-warning" onclick="viewRoundOrders(event, {{round.id}})"/>
                                 </th>
                                 <td>#{{round.id}}</th>
-                                <td>{{round.initiator}}</td>
+                                <td>{{round.initiator.full_name}}</td>
                                 <td>{{round._active}}</td>
                                 <td>{{round.start_time_UTC}}</td>                            
                             </tr>
@@ -42,7 +42,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <select id="fav_drink" name="fav_drink" style="width: 100%;">
+                                    <select id="initiator" name="initiator" style="width: 100%;">
                                         <option value="-1">-- Round Initiator --</option>
                                         {% for person in people %}
                                             <option value="{{person.id}}">{{person.full_name}}</option>
@@ -64,7 +64,7 @@
 
     <div id="orders_modal" class="modal">
         <div class="modal-content">
-            <h2>Orders</h2>
+            <h2>Orders for Round <span id="modal_round_id_span"></span></h2>
             <table id="orders_table" class="table" style="display: flexbox;">
                 <thead>
                     <th scope="col">#</th>

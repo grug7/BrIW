@@ -69,7 +69,10 @@ class Round:
     def __init__(self, id, active, start_time_UTC, initiator):
         self.id = id
         self._orders = {}
-        self._active = active
+        if isinstance(active, int):
+            self._active = True if active == 1 else False
+        else: 
+            self_active = active
         self._start_time_UTC = start_time_UTC
         self.initiator = initiator
 

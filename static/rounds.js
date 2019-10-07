@@ -55,5 +55,37 @@ function viewRoundOrders(event, round_id) {
     getRoundOrdersAPI(round_id);
 }
 
+function postDrinkJson(initiator) {
+  if (initiator !== "") {
+      const xhr = new XMLHttpRequest();
+      let json = JSON.stringify({
+        initiator: initiator
+      });
+      console.log(`built json: ${json}`);
+      
+      xhr.addEventListener("load", function() {
+          if (xhr.status == 201) {
+              alert("a new round has been opened");
+              location.reload();
+          } else {
+              alert(`Status Code: ${xhr.status}. Error: ${xhr.statusText}`);
+          }
+      })
+      
+      xhr.open("POST", "http://localhost:8000/api/rounds");
+      xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");        
+      xhr.send(json);
+  }
+}
+
 document.getElementById("rounds_link").classList.add("nav-active");
 
+document.getElementById("submit_btn").addEventListener("click", function(event){
+  event.preventDefault();
+  let initiator = document.getElementById("initiator");
+  
+  postDrinkJson(initiator.value);
+
+  //reset form now drink added posted
+  initiator.value = "";
+})

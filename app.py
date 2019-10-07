@@ -102,11 +102,9 @@ def handle_rounds():
         return jsonify(get_rounds())
     elif request.method == "POST":
         posted_json = request.get_json()
-        active = posted_json["active"]
-        start_time_UTC = datetime.strptime(posted_json["start_time_utc"], "%Y-%m-%d %H:%M:%S.%f")
         initiator = posted_json["initiator"]
         
-        insert_round(active, start_time_UTC, initiator)
+        insert_round(initiator)
         return '', 201
     
 
