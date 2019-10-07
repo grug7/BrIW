@@ -1,8 +1,21 @@
+function getRoundOrdersAPI(round_id) {
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load",function() {
+    let order_data = xhr.responseText;
+    let orders_table = document.getElementById("orders_table");
+    generateTableHead(orders_table, order_data);
+    generateTableBody(orders_table, order_data);
+  });
+
+  xhr.open("GET", `http://localhost:8000/api/rounds/orders/${round_id}`);
+  xhr.send(null);
+}
+
 function generateTableHead(table, data) {
     let thead = table.createTHead();
     let row = thead.insertRow();
 
-    for (let key of data[0]) {
+    for (let key of data) {
       let th = document.createElement("th");
       let text = document.createTextNode(key);
 
@@ -32,23 +45,7 @@ function viewRoundOrders(event, round_id) {
 
     modal.style.display = "block";
 
-    //build table with data
-    // order_data = [
-    //     { id: 1, person: "Greg Ford", drink: "Fight Milk" },
-    //     { id: 2, person: "Chris Whitlam", drink: "Coffee" },
-    //     { id: 3, person: "Kieran Hall", drink: "Suasage Juice" }
-    // ];
-
-    order_data = [
-        { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-        { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-        { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-        { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-        { name: "Monte Amiata", height: 1738, place: "Siena" }
-      ];
-    orders_table = document.getElementById("orders_table");
-    generateTableHead(orders_table, order_data);
-    generateTableBody(orders_table, order_data);
+    getRoundOrdersAPI(round_id);
 }
 
 document.getElementById("rounds_link").classList.add("nav-active");

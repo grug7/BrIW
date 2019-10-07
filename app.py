@@ -144,8 +144,6 @@ def serve_drinks_page():
 
 @app.route("/rounds", methods=["GET", "POST"])
 def serve_rounds_page():
-    get_rounds = MagicMock(return_value=[Round(1, 1, "2019-10-01 00:00:00.000", 1)])
-    get_people = MagicMock(return_value=[Person(1, "Greg", "Ford", None)])
     return render_template("rounds.html", title="Rounds", rounds=get_rounds(), people=get_people())
 
 
