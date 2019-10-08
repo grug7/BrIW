@@ -15,29 +15,46 @@ function getRoundOrdersAPI(round_id) {
   xhr.send(null);
 }
 
-// function generateRoundTableBody(table, data) {
-//   tbody = table.createTBody();
-//   for (let round of data) {
-//     let row = tbody.insertRow();
-    
-
-//     for (let i = 0; i < Object.keys(round).length; i++) {
-//       let cell = row.insertCell();
-//       let cellValue;
-
-//       switch (i) {
-//         case 0:
-//           break;
-//         case 1:
-//           break;
-//         case 2:
-//           break;
-//         case 3:
-//           break;
-//       }
-//     }
-//   }
+// function getRounds() {
+//   const xhr = new XMLHttpRequest();
+//   xhr.
 // }
+
+function createViewRoundButton(round_id) {
+  let btn = document.createElement("input");
+  btn.type = "button";
+  btn.value = "View";
+  btn.classList.add("btn");
+  btn.classList.add("btn-warning");
+  btn.addEventListener("click", viewRoundOrders(event, round_id));
+
+  return btn
+}
+
+function generateRoundTableBody(table, data) {
+  tbody = table.createTBody();
+  for (let round of data) {
+    let row = tbody.insertRow();
+    let btn = createViewRoundButton(round_id)
+    row.insertCell().appendChild(round["id"]);
+    
+    for (let i = 0; i < Object.keys(round).length; i++) {
+      let cell = row.insertCell();
+      let cellValue;
+
+      switch (i) {
+        case 0:
+          break;
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+      }
+    }
+  }
+}
 
 
 function generateOrderTableBody(table, data) {
@@ -92,8 +109,7 @@ function postRoundJson(initiator) {
       xhr.addEventListener("load", function() {
           if (xhr.status == 201) {
               alert("a new round has been opened");
-              //TODO make this ASYNC
-              location.reload();
+              
           } else {
               alert(`Status Code: ${xhr.status}. Error: ${xhr.statusText}`);
           }
@@ -149,7 +165,6 @@ document.getElementById("add_order_btn").addEventListener("click", function(even
   let round_id = document.getElementById("modal_round_id_span");
   let person = document.getElementById("modal_add_new_order_person");
   let drink = document.getElementById("modal_add_new_order_drink");
-  
   
   postOrderJson(round_id.textContent, person.value, drink.value);
 });
