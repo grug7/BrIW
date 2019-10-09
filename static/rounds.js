@@ -18,48 +18,6 @@ function getRoundOrdersAPI(round_id) {
   xhr.send(null);
 }
 
-// function getRounds() {
-//   const xhr = new XMLHttpRequest();
-//   xhr.
-// }
-
-function createViewRoundButton(round_id) {
-  let btn = document.createElement("input");
-  btn.type = "button";
-  btn.value = "View";
-  btn.classList.add("btn");
-  btn.classList.add("btn-warning");
-  btn.addEventListener("click", viewRoundOrders(event, round_id));
-
-  return btn
-}
-
-function generateRoundTableBody(table, data) {
-  tbody = table.createTBody();
-  for (let round of data) {
-    let row = tbody.insertRow();
-    let btn = createViewRoundButton(round_id)
-    row.insertCell().appendChild(round["id"]);
-    
-    for (let i = 0; i < Object.keys(round).length; i++) {
-      let cell = row.insertCell();
-      let cellValue;
-
-      switch (i) {
-        case 0:
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-        case 3:
-          break;
-      }
-    }
-  }
-}
-
-
 function generateOrderTableBody(table, data) {
   tbody = table.createTBody();
   for (let order of data) {
