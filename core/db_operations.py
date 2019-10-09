@@ -1,7 +1,7 @@
 import pymysql
-from data_config import *
-from classes import *
-from classes import Round
+from core.data_config import *
+from core.classes import *
+from core.classes import Round
 from datetime import datetime
 
 def db_return_rows(query, parameters=None):

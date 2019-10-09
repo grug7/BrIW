@@ -4,8 +4,8 @@ from flask import request
 from flask import render_template
 
 from json import JSONEncoder
-from classes import *
-from db_operations import *
+from core.classes import *
+from core.db_operations import *
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class MyJSONEncoder(JSONEncoder):
             return o.__dict__
 
 
-app = Flask(__name__, static_url_path="/static")
+app = Flask(__name__, static_url_path="/static/")
 app.json_encoder = MyJSONEncoder
 
 
@@ -140,7 +140,6 @@ def serve_drinks_page():
 @app.route("/rounds", methods=["GET", "POST"])
 def serve_rounds_page():
     return render_template("rounds.html", title="Rounds", rounds=get_rounds(), people=get_people(), drinks=get_drinks())
-
 
 if __name__ == "__main__":
     app.run(host="localhost", port=8000, debug=True)
