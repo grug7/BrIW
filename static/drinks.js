@@ -18,7 +18,7 @@ function postDrinkJson(drink_name, drink_instructions) {
             }
         })
         
-        xhr.open("POST", "http://localhost:8000/api/drinks");
+        xhr.open("POST", "/api/drinks");
         xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");        
         xhr.send(json);
     }

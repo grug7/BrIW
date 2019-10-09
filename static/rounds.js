@@ -1,6 +1,8 @@
 function deleteTBody(table) {
-  tBody = table.tBodies[0];
-  tBody.parentNode.removeChild(tBody);
+  if (table.tBodies.length > 0) {
+    tBody = table.tBodies[0];
+    tBody.parentNode.removeChild(tBody);
+  }
 }
 
 function getRoundOrdersAPI(round_id) {
@@ -8,10 +10,11 @@ function getRoundOrdersAPI(round_id) {
   xhr.addEventListener("load",function() {
     let order_data = JSON.parse(xhr.responseText);
     let orders_table = document.getElementById("orders_table");
+    deleteTBody(orders_table);
     generateOrderTableBody(orders_table, order_data);
   });
   
-  xhr.open("GET", `http://localhost:8000/api/rounds/orders/${round_id}`);
+  xhr.open("GET", `/api/rounds/orders/${round_id}`);
   xhr.send(null);
 }
 
@@ -115,7 +118,7 @@ function postRoundJson(initiator) {
           }
       })
       
-      xhr.open("POST", "http://localhost:8000/api/rounds");
+      xhr.open("POST", "/api/rounds");
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");        
       xhr.send(json);
   }
@@ -142,8 +145,7 @@ function postOrderJson(round_id, person_id, drink_id) {
     }
   })
 
-  console.log(`http://localhost:8000/api/rounds/orders/${round_id}`);
-  xhr.open("POST", `http://localhost:8000/api/rounds/orders/${round_id}`);
+  xhr.open("POST", `/api/rounds/orders/${round_id}`);
   xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
   xhr.send(json);
 }

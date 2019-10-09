@@ -27,15 +27,15 @@ function postPersonJson(first_name, last_name, fav_drink) {
         }
         
         xhr.addEventListener("load", function() {
-            if (xhr.status == 201) {
-                alert(`${first_name.value} ${last_name.value} has been added`);
+            if (xhr.status == 201) {                
+                alert("user has been added");
                 location.reload();
             } else {
                 alert(`Status Code: ${xhr.status}. Error: ${xhr.statusText}`);
             }
         })
 
-        xhr.open("POST", "http://localhost:8000/api/people");
+        xhr.open("POST", "/api/people");
         xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhr.send(json);
     }
