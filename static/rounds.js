@@ -108,6 +108,23 @@ function postOrderJson(round_id, person_id, drink_id) {
   xhr.send(json);
 }
 
+function endRound(event, round_id) {
+  event.preventDefault();
+
+  if (confirm("Are you sure?")) {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", function() {
+      if (xhr.status == 200) {
+        location.reload();
+      } else {
+        alert(`Failed to close round. ERROR: ${xhr.staus}. ${xhr.statusText}`);
+      }
+    })
+    xhr.open("POST", `/api/rounds/end/${round_id}`);
+    xhr.send(null);
+  }
+}
+
 document.getElementById("rounds_link").classList.add("nav-active");
 
 document.getElementById("submit_btn").addEventListener("click", function(event){
@@ -128,3 +145,4 @@ document.getElementById("add_order_btn").addEventListener("click", function(even
   
   postOrderJson(round_id.textContent, person.value, drink.value);
 });
+

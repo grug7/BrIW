@@ -14,13 +14,14 @@
                         <th scope="col">#</th>
                         <th scope="col">Initiator</th>
                         <th scope="col">Round Open?</th>
-                        <th scope="col">Start/Submit Time</th>
+                        <th scope="col">Start Time (UTC)</th>
                     </thead>
                     <tbody>
                         {% for round in rounds %}
                             <tr>
                                 <th scope="col">
                                     <input id="view{{round.id}}" type="button" value="View" class="btn btn-warning" onclick="viewRoundOrders(event, {{round.id}})"/>
+                                    <input id="end_round_btn_{{round.id}}" type="button" value="End" class="btn btn-warning" onclick="endRound(event, {{round.id}})" />
                                 </th>
                                 <td>#{{round.id}}</th>
                                 <td>{{round.initiator.full_name}}</td>
@@ -104,7 +105,5 @@
             </div>
         </div>
     </div>
-
-
     <script src="/static/rounds.js"></script>
 {% endblock %}

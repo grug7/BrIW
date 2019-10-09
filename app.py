@@ -111,6 +111,13 @@ def handle_round(round_id):
     return jsonify(get_round_by_id(round_id))
 
 
+@app.route("/api/rounds/end/<round_id>", methods=["POST"])
+def handle_end_round(round_id):
+    round_to_end = get_round_by_id(round_id)
+    update_round(round_to_end.id, 0, round_to_end.start_time_UTC, round_to_end.initiator)
+
+    return "", 200
+
 @app.route("/api/rounds/orders/<round_id>", methods=["GET", "POST"])
 def handle_round_orders(round_id):
     if request.method == "GET":
