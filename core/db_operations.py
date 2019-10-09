@@ -270,7 +270,7 @@ def insert_round(round_initiator):
     insert into tb_Rounds (Round_Active, Round_StartTimeUTC, Round_Initiator)
     values (1, %s, %s)
     """
-    
+     
     parameters = (datetime.utcnow(), round_initiator)
     return db_insert_and_return_id(sql_save_command, parameters)
 

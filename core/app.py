@@ -8,9 +8,6 @@ from classes import *
 from db_operations import *
 from datetime import datetime
 
-import unittest
-from unittest.mock import MagicMock
- 
 
 class MyJSONEncoder(JSONEncoder):
     def default(self, o):
