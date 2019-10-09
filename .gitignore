@@ -3,7 +3,6 @@ data/
 ansible/
 
 flask_server.log
-Dockerfile
 *.p
 *.py.swp
 *.json
