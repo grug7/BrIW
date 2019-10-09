@@ -18,4 +18,3 @@ All dependencies can be installed with:
 
 ### Contributing
 To contribute to BrIW, fork the repo make your changes and make a pull request that will be reviewed
-
