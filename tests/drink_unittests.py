@@ -25,6 +25,4 @@ class DrinkUnitTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-   unit_drink = DrinkUnitTests()
-   unit_drink.test_constructor_with_instructions()
-   unit_drink.test_constructor_without_instructions()
+    unittest.main()

@@ -38,6 +38,4 @@ class PersonUnitTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unit_person = PersonUnitTests()
-    unit_person.test_contructor_with_drink()
-    unit_person.test_contructor_without_drink()
+    unittest.main()
