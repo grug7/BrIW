@@ -125,6 +125,26 @@ function endRound(event, round_id) {
   }
 }
 
+function selectPreferedDrink(event) {
+  //event.preventDefault();
+
+  add_person_selected = document.getElementById("modal_add_new_order_person").value;
+
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", function() {
+    if (xhr.status == 200) {
+      drink_drop_down = document.getElementById("modal_add_new_order_drink")
+      response = JSON.parse(xhr.responseText);
+
+      if (response["fav_drink"] != null) {
+        drink_drop_down.value = response["fav_drink"]["id"];
+      }
+    }
+  });
+  xhr.open("GET", `/api/people/${add_person_selected}`);
+  xhr.send(null);
+}
+
 document.getElementById("rounds_link").classList.add("nav-active");
 
 document.getElementById("submit_btn").addEventListener("click", function(event){
@@ -146,3 +166,4 @@ document.getElementById("add_order_btn").addEventListener("click", function(even
   postOrderJson(round_id.textContent, person.value, drink.value);
 });
 
+selectPreferedDrink(null);

@@ -90,7 +90,7 @@
                 <h3>Add/ Update Order</h3>
             </div>
             <div>
-                <select id="modal_add_new_order_person">
+                <select id="modal_add_new_order_person" onchange="selectPreferedDrink(event)">
                     {% for person in people %}
                         <option value="{{person.id}}">{{person.full_name}}</option>
                     {% endfor %}
